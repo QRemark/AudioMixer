@@ -1,11 +1,12 @@
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.Audio;
 using TMPro;
 
 public class AudioManager : MonoBehaviour
 {
-    [SerializeField] private AudioMixer _audioMixer;
+    [SerializeField] private VolumeManager _volumeManager;
+    [SerializeField] private SoundPlayer _soundPlayer;
+    [SerializeField] private MuteToggle _muteToggle;
 
     [SerializeField] private Slider _masterVolume;
     [SerializeField] private Slider _buttonsVolume;
@@ -19,10 +20,8 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioClip _s1Clip;
     [SerializeField] private AudioClip _s2Clip;
     [SerializeField] private AudioClip _s3Clip;
-    [SerializeField] private AudioSource _backgroundSource;
-    [SerializeField] private AudioSource _buttonSource;
 
-    private bool _isMuted = false;
+    TextMeshProUGUI _buttonText;
 
     private float _startVolume = 0.5f;
 
@@ -36,34 +35,22 @@ public class AudioManager : MonoBehaviour
         _buttonsVolume.value = _startVolume; 
         _backgroundVolume.value = _startVolume;
 
-        SetVolume(_masterName, _masterVolume.value);
-        SetVolume(_buttonsName, _buttonsVolume.value);
-        SetVolume(_backgroundName, _backgroundVolume.value);
+        _volumeManager.SetVolume(_masterName, _masterVolume);
+        _volumeManager.SetVolume(_buttonsName, _buttonsVolume);
+        _volumeManager.SetVolume(_backgroundName, _backgroundVolume);
 
-        _masterVolume.onValueChanged.AddListener(value => SetVolume(_masterName, value));
-        _buttonsVolume.onValueChanged.AddListener(value => SetVolume(_buttonsName, value));
-        _backgroundVolume.onValueChanged.AddListener(value => SetVolume(_backgroundName, value));
-        _muteVolume.onClick.AddListener(ToggleMute);
+        _masterVolume.onValueChanged.AddListener(value => _volumeManager.SetVolume(_masterName, _masterVolume));
+        _buttonsVolume.onValueChanged.AddListener(value => _volumeManager.SetVolume(_buttonsName, _buttonsVolume));
+        _backgroundVolume.onValueChanged.AddListener(value => _volumeManager.SetVolume(_backgroundName, _backgroundVolume));
 
-        _s1Button.onClick.AddListener(() => PlaySound(_s1Clip));
-        _s2Button.onClick.AddListener(() => PlaySound(_s2Clip));
-        _s3Button.onClick.AddListener(() => PlaySound(_s3Clip));
-    }
+        _muteVolume.onClick.AddListener(() =>
+        {
+            _buttonText = _muteVolume.GetComponentInChildren<TextMeshProUGUI>();
+            _muteToggle.ToggleMute(_buttonText);
+        });
 
-    private void SetVolume(string name, float value)
-    {
-        _audioMixer.SetFloat(name, Mathf.Log10(value) * 20);
-    }
-
-    private void ToggleMute()
-    {
-        _isMuted = !_isMuted;
-        AudioListener.pause = _isMuted;
-        _muteVolume.GetComponentInChildren<TextMeshProUGUI>().text = _isMuted ? "Unmute" : "Mute";
-    }
-
-    private void PlaySound(AudioClip clip)
-    {
-        _buttonSource.PlayOneShot(clip);
+        _s1Button.onClick.AddListener(() => _soundPlayer.PlaySound(_s1Clip));
+        _s2Button.onClick.AddListener(() => _soundPlayer.PlaySound(_s2Clip));
+        _s3Button.onClick.AddListener(() => _soundPlayer.PlaySound(_s3Clip));
     }
 }
