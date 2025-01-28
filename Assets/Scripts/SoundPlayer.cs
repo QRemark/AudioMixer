@@ -1,11 +1,25 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SoundPlayer : MonoBehaviour
 {
-    [SerializeField] private AudioSource _buttonSource;
+    [SerializeField] private AudioSource _audioSource; 
+    [SerializeField] private AudioClip[] _soundClips;
+    [SerializeField] private Button[] _soundButtons;
 
-    public void PlaySound(AudioClip clip)
+    public void Initialize()
     {
-        _buttonSource.PlayOneShot(clip);
+        for (int i = 0; i < _soundButtons.Length; i++)
+        {
+            int index = i;
+            _soundButtons[i].onClick.AddListener(()=>PlaySound(index));
+        }
+    }
+
+    private void PlaySound(int clipIndex)
+    {
+        _audioSource.PlayOneShot(_soundClips[clipIndex]);
     }
 }
+
+

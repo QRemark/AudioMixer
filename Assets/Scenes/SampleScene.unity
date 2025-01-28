@@ -2032,7 +2032,7 @@ GameObject:
   - component: {fileID: 1092103450}
   - component: {fileID: 1092103451}
   m_Layer: 5
-  m_Name: AudioManager
+  m_Name: AudioHandler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2069,19 +2069,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 714e501bf01dca14ea1904304d50978a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _volumeManager: {fileID: 1083648981}
+  _volume: {fileID: 1083648981}
   _soundPlayer: {fileID: 2146103510}
-  _muteToggle: {fileID: 2144706972}
-  _masterVolume: {fileID: 1609054743}
-  _buttonsVolume: {fileID: 1409636515}
-  _backgroundVolume: {fileID: 803845188}
-  _muteVolume: {fileID: 2144706969}
-  _s1Button: {fileID: 89645309}
-  _s2Button: {fileID: 1659063552}
-  _s3Button: {fileID: 99979215}
-  _s1Clip: {fileID: 8300000, guid: bca6c9855dc71ec4a93c01d2cae086e8, type: 3}
-  _s2Clip: {fileID: 8300000, guid: 659e5173a5860dd4cbb480b46231a9f6, type: 3}
-  _s3Clip: {fileID: 8300000, guid: a364c3c29a7ec4848a5d1d358324ef42, type: 3}
+  _mute: {fileID: 2144706972}
+  _volumeSliders:
+  - {fileID: 1609054743}
+  - {fileID: 1409636515}
+  - {fileID: 803845188}
+  _soundButtons:
+  - {fileID: 89645309}
+  - {fileID: 1659063552}
+  - {fileID: 99979215}
+  _muteButton: {fileID: 2144706969}
 --- !u!1 &1117936281
 GameObject:
   m_ObjectHideFlags: 0
@@ -3552,7 +3551,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a000fb456e861dd4283eaaefa703acfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buttonSource: {fileID: 2146103509}
+  _audioSource: {fileID: 2146103509}
+  _soundClips:
+  - {fileID: 8300000, guid: bca6c9855dc71ec4a93c01d2cae086e8, type: 3}
+  - {fileID: 8300000, guid: 659e5173a5860dd4cbb480b46231a9f6, type: 3}
+  - {fileID: 8300000, guid: a364c3c29a7ec4848a5d1d358324ef42, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
