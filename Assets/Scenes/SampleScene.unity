@@ -2021,6 +2021,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _audioMixer: {fileID: 24100000, guid: 494fe96b3930ad7438234a7e12a00c52, type: 2}
+  _volumeSliders:
+  - {fileID: 1609054743}
+  - {fileID: 1409636515}
+  - {fileID: 803845188}
 --- !u!1 &1092103449
 GameObject:
   m_ObjectHideFlags: 0
@@ -2071,16 +2075,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _volume: {fileID: 1083648981}
   _soundPlayer: {fileID: 2146103510}
-  _mute: {fileID: 2144706972}
-  _volumeSliders:
-  - {fileID: 1609054743}
-  - {fileID: 1409636515}
-  - {fileID: 803845188}
-  _soundButtons:
-  - {fileID: 89645309}
-  - {fileID: 1659063552}
-  - {fileID: 99979215}
-  _muteButton: {fileID: 2144706969}
 --- !u!1 &1117936281
 GameObject:
   m_ObjectHideFlags: 0
@@ -3402,6 +3396,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3dd6508c14a1624dbe14f94b47c85a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _muteButton: {fileID: 2144706969}
+  _buttonText: {fileID: 120162610}
 --- !u!1 &2146103507
 GameObject:
   m_ObjectHideFlags: 0
@@ -3556,6 +3552,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: bca6c9855dc71ec4a93c01d2cae086e8, type: 3}
   - {fileID: 8300000, guid: 659e5173a5860dd4cbb480b46231a9f6, type: 3}
   - {fileID: 8300000, guid: a364c3c29a7ec4848a5d1d358324ef42, type: 3}
+  _soundButtons:
+  - {fileID: 89645309}
+  - {fileID: 1659063552}
+  - {fileID: 99979215}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
